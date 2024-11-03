@@ -1,0 +1,43 @@
+Console.WriteLine("Unesite niz koji zelite ispisati: ");
+string niz = Console.ReadLine();
+string[] niz1 = niz.Split(' ');
+int[] nizbrojeva = new int[niz1.Length];
+for (int i = 0; i < niz1.Length; i++)
+{
+    int el = int.Parse(niz1[i]);
+    nizbrojeva[i] = el;
+}
+
+int maxind = 1;
+int len = 1;
+int indeks = 0;
+for (int i = 1; i < nizbrojeva.Length -1; i++)
+{
+    Console.WriteLine(i);
+    if (nizbrojeva[i] > nizbrojeva[i-1])
+    {
+        len++;
+    }
+    else
+    {
+        if (maxind < len)
+        {
+            maxind = len;
+            Console.WriteLine($"{i},{indeks}");
+            indeks = i - maxind;
+        }
+        len = 1;
+        
+    }
+}
+if (maxind < len)
+{
+    maxind = len;
+    indeks = nizbrojeva.Length - maxind;
+}
+Console.WriteLine(maxind);
+Console.WriteLine(indeks);
+for (int i = indeks; i <= len+1; i++)
+{
+    Console.WriteLine(nizbrojeva[i]);
+}
